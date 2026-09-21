@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Para Martu 🌼</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+
+        background: linear-gradient(to bottom, #fffdf4, #fff3bd);
+
+        font-family: Arial, sans-serif;
+
+        overflow: hidden;
+
+        position: relative;
+      }
+
+      /* -------------------------
+           MENSAJE
+        -------------------------- */
+
+      .mensaje {
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        text-align: center;
+
+        z-index: 100;
+
+        background: rgba(255, 253, 244, 0.88);
+
+        padding: 30px 45px;
+
+        border-radius: 25px;
+
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+
+        opacity: 0;
+
+        animation: aparecerMensaje 2s ease-out 5s forwards;
+      }
+
+      .mensaje h1 {
+        margin: 0;
+
+        color: #806000;
+
+        font-size: 42px;
+      }
+
+      .mensaje p {
+        color: #6f5a24;
+
+        font-size: 28px;
+
+        margin: 15px 0 0;
+      }
+
+      @keyframes aparecerMensaje {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.8);
+        }
+
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      /* -------------------------
+           FLORES
+        -------------------------- */
+
+      .flor {
+        position: absolute;
+
+        width: 90px;
+        height: 90px;
+
+        opacity: 0;
+
+        animation: aparecerFlor 1.5s ease-out forwards;
+
+        transform-origin: center;
+      }
+
+      /* PÉTALOS */
+
+      .petalo {
+        position: absolute;
+
+        width: 35px;
+        height: 55px;
+
+        background: #ffd83d;
+
+        border-radius: 50% 50% 45% 45%;
+
+        left: 50%;
+        top: 50%;
+
+        transform-origin: 50% 100%;
+      }
+
+      .petalo:nth-child(1) {
+        transform: translate(-50%, -100%) rotate(0deg);
+      }
+
+      .petalo:nth-child(2) {
+        transform: translate(-50%, -100%) rotate(45deg);
+      }
+
+      .petalo:nth-child(3) {
+        transform: translate(-50%, -100%) rotate(90deg);
+      }
+
+      .petalo:nth-child(4) {
+        transform: translate(-50%, -100%) rotate(135deg);
+      }
+
+      .petalo:nth-child(5) {
+        transform: translate(-50%, -100%) rotate(180deg);
+      }
+
+      .petalo:nth-child(6) {
+        transform: translate(-50%, -100%) rotate(225deg);
+      }
+
+      .petalo:nth-child(7) {
+        transform: translate(-50%, -100%) rotate(270deg);
+      }
+
+      .petalo:nth-child(8) {
+        transform: translate(-50%, -100%) rotate(315deg);
+      }
+
+      /* CENTRO */
+
+      .centro {
+        position: absolute;
+
+        width: 30px;
+        height: 30px;
+
+        background: #8a6200;
+
+        border-radius: 50%;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+      }
+
+      /* -------------------------
+           ANIMACIÓN DE FLORES
+        -------------------------- */
+
+      @keyframes aparecerFlor {
+        0% {
+          opacity: 0;
+
+          transform: scale(0) rotate(-30deg);
+        }
+
+        70% {
+          opacity: 1;
+
+          transform: scale(1.15) rotate(10deg);
+        }
+
+        100% {
+          opacity: 1;
+
+          transform: scale(1) rotate(0deg);
+        }
+      }
+
+      /* -------------------------
+           MOVIMIENTO SUAVE
+        -------------------------- */
+
+      .flor {
+        animation-name: aparecerFlor, movimiento;
+
+        animation-duration: 1.5s, 4s;
+
+        animation-timing-function: ease-out, ease-in-out;
+
+        animation-iteration-count: 1, infinite;
+
+        animation-fill-mode: forwards, both;
+      }
+
+      @keyframes movimiento {
+        0% {
+          margin-top: 0;
+        }
+
+        50% {
+          margin-top: 8px;
+        }
+
+        100% {
+          margin-top: 0;
+        }
+      }
+
+      /* -------------------------
+           RESPONSIVE
+        -------------------------- */
+
+      @media (max-width: 600px) {
+        .mensaje {
+          padding: 22px 25px;
+
+          width: 80%;
+        }
+
+        .mensaje h1 {
+          font-size: 30px;
+        }
+
+        .mensaje p {
+          font-size: 23px;
+        }
+
+        .flor {
+          transform: scale(0.75);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- FLORES -->
+
+    <div id="jardin"></div>
+
+    <!-- MENSAJE -->
+
+    <div class="mensaje">
+      <h1>🌼 Feliz Primavera Martu 🌼</h1>
+
+      <p>Te amo 💛</p>
+    </div>
+
+    <script>
+      const jardin = document.getElementById("jardin");
+
+      /*
+       * Creamos muchas flores
+       */
+
+      const cantidadFlores = 35;
+
+      for (let i = 0; i < cantidadFlores; i++) {
+        const flor = document.createElement("div");
+
+        flor.className = "flor";
+
+        /*
+         * Posición aleatoria
+         */
+
+        const izquierda = Math.random() * 100;
+
+        const arriba = Math.random() * 100;
+
+        flor.style.left = izquierda + "%";
+
+        flor.style.top = arriba + "%";
+
+        /*
+         * Tamaño ligeramente diferente
+         */
+
+        const tamaño = 0.6 + Math.random() * 0.7;
+
+        flor.style.transform = `scale(${tamaño})`;
+
+        /*
+         * Cada flor aparece
+         * en un momento diferente
+         */
+
+        flor.style.animationDelay = Math.random() * 4 + "s";
+
+        /*
+         * Creamos los pétalos
+         */
+
+        for (let p = 0; p < 8; p++) {
+          const petalo = document.createElement("div");
+
+          petalo.className = "petalo";
+
+          flor.appendChild(petalo);
+        }
+
+        /*
+         * Centro de la flor
+         */
+
+        const centro = document.createElement("div");
+
+        centro.className = "centro";
+
+        flor.appendChild(centro);
+
+        /*
+         * Agregamos la flor
+         */
+
+        jardin.appendChild(flor);
+      }
+    </script>
+  </body>
+</html>
